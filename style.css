@@ -1,0 +1,135 @@
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: linear-gradient(135deg, #071427 0%, #08323f 100%);
+  color: #e6f7f8;
+  text-align: center;
+  padding: 28px;
+  min-height: 100vh;
+}
+h1 {
+  color: #6fe8d8;
+  margin-bottom: 6px;
+}
+.card {
+  background: rgba(255,255,255,0.03);
+  padding: 22px;
+  margin: 20px auto;
+  width: 340px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2,12,20,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+input, textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  background: rgba(255,255,255,0.025);
+  color: #e6f7f8;
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 6px;
+  transition: box-shadow 180ms ease, transform 120ms ease;
+}
+input::placeholder, textarea::placeholder {
+  color: rgba(230,247,248,0.6);
+}
+button {
+  padding: 10px 16px;
+  background: #00c2a8;
+  color: #042026;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 8px 18px rgba(0,194,168,0.12);
+  transition: transform 140ms ease, box-shadow 140ms ease, background 120ms ease;
+}
+button:hover {
+  background: #00a88f;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,168,143,0.12);
+}
+#responseMsg {
+  color: #9ef6e8;
+  font-weight: 700;
+  margin-top: 8px;
+}
+/* Animation uti */
+.card {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 200ms cubic-bezier(.2,.9,.3,1), transform 200ms cubic-bezier(.2,.9,.3,1);
+}
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Slide-in variants for alternating cards */
+.slide-left {
+  animation: slideInLeft 300ms cubic-bezier(.22,1,.36,1) both;
+}
+.slide-right {
+  animation: slideInRight 300ms cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-10px) translateY(4px); opacity: 0; }
+  to   { transform: translateX(0) translateY(0); opacity: 1; }
+}
+@keyframes slideInRight {
+  from { transform: translateX(10px) translateY(4px); opacity: 0; }
+  to   { transform: translateX(0) translateY(0); opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.03); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.answer-animate {
+  animation: fadeIn 220ms ease both;
+}
+.response-animate {
+  animation: pop 240ms cubic-bezier(.2,.9,.2,1) both;
+}
+/* Button micro-animation */
+button:active {
+  transform: scale(0.98);
+}
+/* Ripple effect for buttons */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(255,255,255,0.28);
+  animation: ripple 420ms linear;
+  pointer-events: none;
+}
+@keyframes ripple {
+  to { transform: scale(4.5); opacity: 0; }
+}
+/* Typing cursor for chatbot answer */
+.typing-cursor::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  margin-left: 6px;
+  background: linear-gradient(90deg, rgba(159,246,232,0.95) 0%, rgba(159,246,232,0.6) 100%);
+  animation: blink 700ms steps(2,end) infinite;
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+/* Small helpful uti classes */
+.fade-out {
+  opacity: 0 !important;
+  transform: translateY(6px) !important;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
